@@ -9,8 +9,8 @@ A super fun way to bet on the superbowl!
 - the board starts off as an empty 10x10 grid
 - the axes are labeled 0-9
 - each team is assigned to an axis (e.g. Patriots on left, Seahawks on top)
-- each participant is assigned up to 5 squares
-- pick a buy in for a square ($5/square is a good choice)
+- each participant is assigned 100/count(participants) squares
+- pick a buy in for a person
 - all of the squares should be filled before the game starts
 - at the end of each quarter, the score of the game determines a winner
 - the squares reflect the last digit of the score of the game
@@ -21,26 +21,10 @@ A super fun way to bet on the superbowl!
 
 What does this script do?
 ========================
-It randomly generates the board (squares) and outputs it into a csv file
-(i.e. it saves you the hassle of manual entry)
+It randomly generates the board (squares) and outputs it into a csv file, 
+generates a latex file with tables for each participant and.
 
 How do I use it?
 =================
-Just edit the names and number of entries in the file and run it.
-
-For the less techincal:
-
-- save sbsq.py to your Desktop
-- edit the file with the names you want
-- open up a terminal
-- enter these commands:
-
-```
-    $ cd ~/Desktop
-    $ chmod +x sbsq.py
-    $ python sbsq.py
-```
-
-- The file superbowl_squares.csv will be saved on your computer
-- You can open it with excel or google docs
-
+Clone this repository, edit 'REAL_NAMES' in sbsq.py, run ```make```, 
+print superbowl_squares.pdf

@@ -1,0 +1,56 @@
+% !TeX program = lualatex
+\documentclass[12pt,a4paper]{article}
+
+
+% language setting
+\usepackage{polyglossia}
+\setmainlanguage{english}
+
+%% =============== load packages ================================
+% typographical improvements (micro-typography)
+\usepackage{microtype}
+
+% enable colors
+\usepackage{xcolor}
+% enable inclusion of images (EPS, PNG, JPG, PDF)
+\usepackage{graphicx}
+% include .tex files with \includegraphics
+\usepackage{gincltex}
+% better handling of filenames with \includegraphics etc.
+\usepackage{grffile}
+
+%% =============== package settings =============================
+% LaTeX
+\renewcommand{\arraystretch}{1.3}
+% graphicx
+% use “keepaspectratio” as a default
+% s. https://tex.stackexchange.com/a/91619
+\setkeys{Gin}{keepaspectratio}
+
+\usepackage{pgfplots}
+ \usepackage{pgfplotstable}
+ \usetikzlibrary{calc,shapes,positioning}
+
+\usepackage{booktabs, colortbl}
+\usepackage{pdftexcmds}
+ 
+\pgfplotsset{compat=1.16}
+
+\pgfplotstableread[col sep=comma]{people.csv}{\peopletable}
+\pgfplotstableread[col sep=comma]{squares.csv}{\squarestable}
+\renewcommand{\arraystretch}{1.3}
+
+\pgfplotstableset{
+    string type, col sep=comma,header=true
+}
+
+\begin{document}
+    \pgfplotstabletypeset[%    
+every first row/.style={before row=\toprule},]{\peopletable}\\
+\\\vspace{1cm}
+	Kürzel: A B C D E F H K L  \\
+    \clearpage
+\makeatletter
+    \input{tables.tex}
+\makeatother
+\end{document}

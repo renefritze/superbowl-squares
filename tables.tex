@@ -1,0 +1,147 @@
+
+    
+    \newsavebox{\BoxA}
+    \sbox{\BoxA}{\pgfplotstabletypeset[%    
+    before row=\hline,every last row/.style={after row=\hline},
+    column type/.add={|}{},
+    every last column/.style={column type/.add={}{|} },
+postproc cell content/.append code={\ifnum \pdf@strcmp{#1}{A}=0 %
+    \pgfkeys{/pgfplots/table/@cell content/.add={\cellcolor{red!10!white} }{} }\fi},
+]{\squarestable}}
+\begin{tikzpicture}
+    \node[inner sep=0pt] (rams) at (-2.5,0)
+    {\includegraphics[width=.25\textwidth]{rams.jpg}};
+    \node[inner sep=0pt] (patriots) at (4,4.5)
+    {\includegraphics[width=.25\textwidth]{patriots.jpg}};
+    \node[inner sep=0pt] (table) at (4,0)
+    {\usebox{\BoxA}};
+\end{tikzpicture}
+    \\\\\\
+    
+    \newsavebox{\BoxB}
+    \sbox{\BoxB}{\pgfplotstabletypeset[%    
+    before row=\hline,every last row/.style={after row=\hline},
+    column type/.add={|}{},
+    every last column/.style={column type/.add={}{|} },
+postproc cell content/.append code={\ifnum \pdf@strcmp{#1}{B}=0 %
+    \pgfkeys{/pgfplots/table/@cell content/.add={\cellcolor{red!10!white} }{} }\fi},
+]{\squarestable}}
+\begin{tikzpicture}
+    \node[inner sep=0pt] (rams) at (-2.5,0)
+    {\includegraphics[width=.25\textwidth]{rams.jpg}};
+    \node[inner sep=0pt] (patriots) at (4,4.5)
+    {\includegraphics[width=.25\textwidth]{patriots.jpg}};
+    \node[inner sep=0pt] (table) at (4,0)
+    {\usebox{\BoxB}};
+\end{tikzpicture}
+    \\\\\\
+    
+    \newsavebox{\BoxC}
+    \sbox{\BoxC}{\pgfplotstabletypeset[%    
+    before row=\hline,every last row/.style={after row=\hline},
+    column type/.add={|}{},
+    every last column/.style={column type/.add={}{|} },
+postproc cell content/.append code={\ifnum \pdf@strcmp{#1}{C}=0 %
+    \pgfkeys{/pgfplots/table/@cell content/.add={\cellcolor{red!10!white} }{} }\fi},
+]{\squarestable}}
+\begin{tikzpicture}
+    \node[inner sep=0pt] (rams) at (-2.5,0)
+    {\includegraphics[width=.25\textwidth]{rams.jpg}};
+    \node[inner sep=0pt] (patriots) at (4,4.5)
+    {\includegraphics[width=.25\textwidth]{patriots.jpg}};
+    \node[inner sep=0pt] (table) at (4,0)
+    {\usebox{\BoxC}};
+\end{tikzpicture}
+    \\\\\\
+    
+    \newsavebox{\BoxD}
+    \sbox{\BoxD}{\pgfplotstabletypeset[%    
+    before row=\hline,every last row/.style={after row=\hline},
+    column type/.add={|}{},
+    every last column/.style={column type/.add={}{|} },
+postproc cell content/.append code={\ifnum \pdf@strcmp{#1}{D}=0 %
+    \pgfkeys{/pgfplots/table/@cell content/.add={\cellcolor{red!10!white} }{} }\fi},
+]{\squarestable}}
+\begin{tikzpicture}
+    \node[inner sep=0pt] (rams) at (-2.5,0)
+    {\includegraphics[width=.25\textwidth]{rams.jpg}};
+    \node[inner sep=0pt] (patriots) at (4,4.5)
+    {\includegraphics[width=.25\textwidth]{patriots.jpg}};
+    \node[inner sep=0pt] (table) at (4,0)
+    {\usebox{\BoxD}};
+\end{tikzpicture}
+    \\\\\\
+    
+    \newsavebox{\BoxE}
+    \sbox{\BoxE}{\pgfplotstabletypeset[%    
+    before row=\hline,every last row/.style={after row=\hline},
+    column type/.add={|}{},
+    every last column/.style={column type/.add={}{|} },
+postproc cell content/.append code={\ifnum \pdf@strcmp{#1}{E}=0 %
+    \pgfkeys{/pgfplots/table/@cell content/.add={\cellcolor{red!10!white} }{} }\fi},
+]{\squarestable}}
+\begin{tikzpicture}
+    \node[inner sep=0pt] (rams) at (-2.5,0)
+    {\includegraphics[width=.25\textwidth]{rams.jpg}};
+    \node[inner sep=0pt] (patriots) at (4,4.5)
+    {\includegraphics[width=.25\textwidth]{patriots.jpg}};
+    \node[inner sep=0pt] (table) at (4,0)
+    {\usebox{\BoxE}};
+\end{tikzpicture}
+    \\\\\\
+    
+    \newsavebox{\BoxF}
+    \sbox{\BoxF}{\pgfplotstabletypeset[%    
+    before row=\hline,every last row/.style={after row=\hline},
+    column type/.add={|}{},
+    every last column/.style={column type/.add={}{|} },
+postproc cell content/.append code={\ifnum \pdf@strcmp{#1}{F}=0 %
+    \pgfkeys{/pgfplots/table/@cell content/.add={\cellcolor{red!10!white} }{} }\fi},
+]{\squarestable}}
+\begin{tikzpicture}
+    \node[inner sep=0pt] (rams) at (-2.5,0)
+    {\includegraphics[width=.25\textwidth]{rams.jpg}};
+    \node[inner sep=0pt] (patriots) at (4,4.5)
+    {\includegraphics[width=.25\textwidth]{patriots.jpg}};
+    \node[inner sep=0pt] (table) at (4,0)
+    {\usebox{\BoxF}};
+\end{tikzpicture}
+    \\\\\\
+    
+    \newsavebox{\BoxG}
+    \sbox{\BoxG}{\pgfplotstabletypeset[%    
+    before row=\hline,every last row/.style={after row=\hline},
+    column type/.add={|}{},
+    every last column/.style={column type/.add={}{|} },
+postproc cell content/.append code={\ifnum \pdf@strcmp{#1}{G}=0 %
+    \pgfkeys{/pgfplots/table/@cell content/.add={\cellcolor{red!10!white} }{} }\fi},
+]{\squarestable}}
+\begin{tikzpicture}
+    \node[inner sep=0pt] (rams) at (-2.5,0)
+    {\includegraphics[width=.25\textwidth]{rams.jpg}};
+    \node[inner sep=0pt] (patriots) at (4,4.5)
+    {\includegraphics[width=.25\textwidth]{patriots.jpg}};
+    \node[inner sep=0pt] (table) at (4,0)
+    {\usebox{\BoxG}};
+\end{tikzpicture}
+    \\\\\\
+    
+    \newsavebox{\BoxH}
+    \sbox{\BoxH}{\pgfplotstabletypeset[%    
+    before row=\hline,every last row/.style={after row=\hline},
+    column type/.add={|}{},
+    every last column/.style={column type/.add={}{|} },
+postproc cell content/.append code={\ifnum \pdf@strcmp{#1}{H}=0 %
+    \pgfkeys{/pgfplots/table/@cell content/.add={\cellcolor{red!10!white} }{} }\fi},
+]{\squarestable}}
+\begin{tikzpicture}
+    \node[inner sep=0pt] (rams) at (-2.5,0)
+    {\includegraphics[width=.25\textwidth]{rams.jpg}};
+    \node[inner sep=0pt] (patriots) at (4,4.5)
+    {\includegraphics[width=.25\textwidth]{patriots.jpg}};
+    \node[inner sep=0pt] (table) at (4,0)
+    {\usebox{\BoxH}};
+\end{tikzpicture}
+    \\\\\\
+    
+    

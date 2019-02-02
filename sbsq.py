@@ -3,35 +3,14 @@
 
 import random
 import csv
+from jinja2 import Template
+import string
 
-MAX_ENTRIES = 5
-PARTICIPANTS = {
+    
+TOPLEFT = '∅'
+NOBODY = 'L'
+REAL_NAMES = ['Tom','Jenny','Maik','Damian','René','Hakan','Repping','Nils',]
 
-	'alex'		: 5,
-	'isaac'		: 5,
-	'aron'		: 5,
-	'ryan'		: 3,
-	'eric'		: 5,
-	'finn'		: 5,
-	'matt'		: 4,
-	'chris'		: 5,
-	'ezra'		: 5,
-	'nick'		: 3,
-	'zach'		: 2,
-	'mike'		: 5,
-	'ellen'		: 5,
-	
-	'john'		: 5,
-	'jim'		: 5,
-	'kc'		: 5,
-	'robbie'	: 5,
-	'mom'		: 5,
-	'dad'		: 5,
-	'jack'		: 5,
-	'jane'		: 3,
-	'max'		: 5
-
-}
 
 '''
 Don't edit below this point
@@ -42,23 +21,9 @@ def initialize_board():
 	for i in range(1, 11):
 		board[i][0] = i - 1
 		board[0][i] = i - 1
-	board[0][0] = ""
+	board[0][0] = TOPLEFT
 	return board
 
-def print_board(board):
-	for row in board:
-		for val in row:
-			print '{:7}'.format(val),
-		print	
-
-def check_participants(p):
-	total = 0
-	for k in p:
-		if p[k] < 0 or p[k] > 5 or not isinstance(p[k], int):
-			raise Exception("Illegal value for %s." % k)
-		total += p[k]
-	if total != 100:
-		raise Exception("Total squares: %d, needed: 100." % total)
 
 def generate_squares(p, b):
 
@@ -78,13 +43,63 @@ def generate_squares(p, b):
 
 
 def print_to_csv(fp, b):
-	with open(fp, 'wb') as outfile:
+	with open(fp, 'wt') as outfile:
 		csv.writer(outfile).writerows(b)
 
 
+def name_table(p, fp):
+    def _tuple(n):
+        if n == 'L':
+            return (n, 'XXXX', NOBODY)
+        return (n, '\_ '*4, '\_\_')
+    tb = [ _tuple(n) for n in p]
+    with open(fp, 'wt') as outfile:
+        out = csv.writer(outfile)
+        out.writerow([ "Name", "Zahl", "Kürzel"])
+        out.writerows(tb)
+          
+          
+def tbl_tex(p, fn):
+    tpl = '''
+    {% for name in names %}
+    \\newsavebox{\Box{?name?}}
+    \sbox{\Box{?name?}}{\pgfplotstabletypeset[%    
+    before row=\hline,every last row/.style={after row=\hline},
+    column type/.add={|}{},
+    every last column/.style={column type/.add={}{|} },
+postproc cell content/.append code={\ifnum \pdf@strcmp{#1}{{?name?}}=0 %
+    \pgfkeys{/pgfplots/table/@cell content/.add={\cellcolor{red!10!white} }{} }\\fi},
+]{\squarestable}}
+\\begin{tikzpicture}
+    \\node[inner sep=0pt] (rams) at (-2.5,0)
+    {\\includegraphics[width=.25\\textwidth]{rams.jpg}};
+    \\node[inner sep=0pt] (patriots) at (4,4.5)
+    {\\includegraphics[width=.25\\textwidth]{patriots.jpg}};
+    \\node[inner sep=0pt] (table) at (4,0)
+    {\\usebox{\Box{?name?}}};
+\\end{tikzpicture}
+    \\\\\\\\\\\\
+    {% endfor %}
+    '''
+    with open(fn, 'wt') as out:
+        tpl = Template(tpl, comment_start_string='{=', variable_start_string='{?', variable_end_string='?}')
+        names = list(p.keys())
+        out.write(tpl.render(names=names))
+        
+    
+def make_participants(p):
+    shorts = [x for x in string.ascii_uppercase if x != NOBODY]
+    lp = len(p)
+    pd = {shorts[i]: 100//lp for i in range(lp)}
+    pd[NOBODY] = 100-(100//lp)*lp
+    return pd
+    
+
 if __name__=="__main__":
 	b = initialize_board()
-	check_participants(PARTICIPANTS)
-	generate_squares(PARTICIPANTS, b)
-	print_to_csv("superbowl_squares.csv", b)
+	participants = make_participants(REAL_NAMES)
+	generate_squares(participants, b)
+	print_to_csv("squares.csv", b)
+	name_table(REAL_NAMES, "people.csv")
+	tbl_tex({p:l for p,l in participants.items() if p != 'L'}, 'tables.tex')
 
